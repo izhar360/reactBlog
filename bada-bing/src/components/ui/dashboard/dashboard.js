@@ -19,6 +19,21 @@ import embed from "@editorjs/embed";
 import SimpleImage from "@editorjs/simple-image";
 import { createPost } from "../../../api";
 
+const editor = new EditorJS({
+  holder: "editorjs",
+  tools: {
+    header: {
+      class: Header,
+      inlineToolbar: true,
+    },
+    list: list,
+    code: code,
+    image: SimpleImage,
+    quote: quote,
+    embed: embed,
+    raw: raw,
+  },
+});
 const Form = () => {
   const history = useHistory();
   const [postData, setPostData] = useState({
@@ -31,45 +46,6 @@ const Form = () => {
   //const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   //const dispatch = useDispatch();
   const classes = useStyles();
-
-  // useEffect(() => {
-  //   // if (post) setPostData(post);
-  // }, []);
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const data = await createPost(postData);
-
-  //   if (data) {
-  //     history.push("/");
-  //   }
-  // };
-
-  //edit config
-  const editor = new EditorJS({
-    /**
-     * Id of Element that should contain the Editor
-     */
-    holder: "editorjs",
-
-    /**
-     * Available Tools list.
-     * Pass Tool's class or Settings object for each Tool you want to use
-     */
-    tools: {
-      header: {
-        class: Header,
-        inlineToolbar: true,
-      },
-      list: list,
-      code: code,
-      image: SimpleImage,
-      quote: quote,
-      embed: embed,
-      raw: raw,
-    },
-  });
 
   //editor submit
   const sumbitArticle = async () => {
@@ -180,6 +156,9 @@ const Form = () => {
           height: "auto",
           margin: "30px 0px 10px 10px",
           border: "1px solid #ccc",
+          color: "#666",
+          fontFamily: "Hoefler Text Georgia serif",
+          padding: "10px 20px",
         }}
       >
         Descriptions:

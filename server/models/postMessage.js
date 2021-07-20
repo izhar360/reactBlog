@@ -21,6 +21,11 @@ const postSchema = mongoose.Schema({
     type: [String],
     default: null,
   },
+  slug: String,
+});
+
+postSchema.pre("save", function () {
+  this.slug = this._id;
 });
 
 const PostMessage = mongoose.model("PostMessage", postSchema);

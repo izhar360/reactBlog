@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import SinglePost from "./components/singlePost";
 import Dashboard from "./components/ui/dashboard/dashboard";
-import RichTextEditor from "./components/ui/dashboard/richEditor";
+//import RichTextEditor from "./components/ui/dashboard/richEditor";
 import DesciptionTest from "./components/descriptionTest";
 function App() {
   return (
@@ -25,9 +25,9 @@ function App() {
             <DesciptionTest />
           </Route>
 
-          <Route exact path="/richText">
+          {/* <Route exact path="/richText">
             <RichTextEditor />
-          </Route>
+          </Route> */}
         </Switch>
       </BrowserRouter>
     </ThemeProvider>

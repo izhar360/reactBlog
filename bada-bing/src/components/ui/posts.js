@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 
@@ -11,10 +11,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
-// import { postsData } from "../data";
 import Zoom from "react-reveal/Zoom";
-import { fetchposts } from "../../api";
-// const contentful = require("contentful");
+import { PostsContext } from "../Context/blogContext";
 
 /**
  * @author
@@ -54,23 +52,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Posts = (props) => {
+  const { Posts } = React.useContext(PostsContext);
+
   const classes = useStyles();
 
   const [error, setError] = useState(null);
-  const [blogPosts, setblogPosts] = useState([]);
-
-  useEffect(() => {
-    const getpost = async () => {
-      try {
-        const { data } = await fetchposts();
-        console.log(data, "pspspsp");
-        setblogPosts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getpost();
-  }, []);
 
   return (
     <div style={{ backgroundColor: "#E6E7E8" }}>
@@ -101,7 +87,7 @@ const Posts = (props) => {
       </div>
 
       <Grid container style={{ marginTop: "30px" }} spacing={2}>
-        {blogPosts.map((post) => (
+        {Posts.map((post) => (
           <Grid
             key={post._id}
             className={classes.gridItem}

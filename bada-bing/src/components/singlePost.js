@@ -16,6 +16,7 @@ import Fade from "react-reveal/Fade";
 import { fetchSinglePost } from "../api";
 import Commentbox from "../components/comments/CommentBox";
 import DesciptionTest from "./descriptionTest";
+import { PostsContext } from "./Context/blogContext";
 
 // const contentful = require("contentful");
 
@@ -161,26 +162,11 @@ const useStyles = makeStyles((theme) => ({
 
 const SinglePost = (props) => {
   const { id } = useParams();
+  const { Posts } = React.useContext(PostsContext);
   const classes = useStyles();
-  //const [posts, setPosts] = useState(null);
-  const [singlePost, setSinglePosts] = useState({});
+
+  const singlePost = Posts.find((post) => post.slug === id);
   const theme = useTheme();
-
-  useEffect(() => {
-    const getpost = async () => {
-      try {
-        const { data } = await fetchSinglePost(id);
-        setSinglePosts(data);
-        console.log(data, "singgggle");
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getpost();
-
-    console.log(singlePost, "psqqqqqpspsp");
-    // setPosts(postsData[id]);
-  }, [singlePost]);
 
   const calculateReadTime = () => {
     if (singlePost !== null) {
