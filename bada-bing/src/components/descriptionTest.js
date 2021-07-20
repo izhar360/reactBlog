@@ -6,6 +6,30 @@ import { fetchposts } from "../api";
 const useStyles = makeStyles((theme) => ({
   desc: {
     fontFamily: "Caslon,serif",
+    marginTop: "40px",
+
+    // "& p::first-letter": {
+    //   fontSize: "125px",
+    //   backgroundColor: "#363f48",
+    //   color: "#fff",
+    //   float: "left",
+    //   padding: "0px 10px",
+
+    //   marginRight: "10px",
+    //   marginTop: "10px",
+    //   lineHeight: "0.9",
+    // },
+    [theme.breakpoints.down("md")]: {
+      width: "74%",
+      marginTop: "60px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "20px",
+      marginTop: "30px",
+      width: "90%",
+    },
+
+    width: "60%",
     color: "#222",
     fontSize: "26px",
     lineHeight: "1.4",
@@ -19,12 +43,24 @@ const useStyles = makeStyles((theme) => ({
     "& img": {
       width: "700px",
       height: "auto",
+      padding: "10px",
+
+      [theme.breakpoints.down("sm")]: {
+        width: "500px",
+        height: "auto",
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "250px",
+        height: "auto",
+        padding: "5px",
+      },
     },
     "& h1,h2,h3,h4": {
-      textAlign: "center",
-      fontSize: "45px",
       color: "#363f48",
       textTransform: "capitalize",
+    },
+    "& h1": {
+      textAlign: "center",
     },
   },
 }));

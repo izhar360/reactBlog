@@ -1,24 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useParams } from "react-router";
 import Chip from "@material-ui/core/Chip";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Header from "./ui/header";
-// import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useTheme } from "@material-ui/core/styles";
-import { postsData, description } from "./data";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import RedditIcon from "@material-ui/icons/Reddit";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import Fade from "react-reveal/Fade";
-import { fetchSinglePost } from "../api";
 import Commentbox from "../components/comments/CommentBox";
 import DesciptionTest from "./descriptionTest";
 import { PostsContext } from "./Context/blogContext";
-
-// const contentful = require("contentful");
 
 /**
  * @author
@@ -80,61 +75,7 @@ const useStyles = makeStyles((theme) => ({
       height: "80px",
     },
   },
-  description: {
-    fontFamily: "Caslon,serif",
-    width: "56%",
-    margin: "0 auto",
-    marginTop: "100px",
-    color: "#222",
-    fontSize: "26px",
-    lineHeight: "1.6",
-    "& h6": {
-      fontSize: "30px",
-      fontWeight: "500",
-    },
-    "& h6::first-letter": {
-      fontSize: "125px",
-      backgroundColor: "#363f48",
-      color: "#fff",
-      float: "left",
-      padding: "0px 10px",
 
-      marginRight: "10px",
-      marginTop: "10px",
-      lineHeight: "0.9",
-    },
-    [theme.breakpoints.down("md")]: {
-      width: "80%",
-      marginTop: "60px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "19px",
-      "& h6": {
-        fontSize: "22px",
-      },
-      width: "90%",
-    },
-    "& a": {
-      color: "#1c93c5",
-      textDecoration: "none",
-      cursor: "pointer",
-    },
-    "& images": {
-      width: "200px",
-      height: "200px",
-    },
-    "& header": {
-      textAlign: "center",
-      fontSize: "45px",
-      color: "#363f48",
-    },
-    "& span": {
-      textAlign: "center",
-      display: "block",
-      fontSize: "25px",
-      paddingTop: "15px",
-    },
-  },
   cover: {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -169,7 +110,7 @@ const SinglePost = (props) => {
   const theme = useTheme();
 
   const calculateReadTime = () => {
-    if (singlePost !== null) {
+    if (singlePost) {
       const n = (singlePost.description + "").split(" ").length / 200;
 
       return Math.ceil(n);
@@ -233,12 +174,9 @@ const SinglePost = (props) => {
 
         {/* discriptionnnn */}
 
-        <DesciptionTest blockContent={singlePost.blockContent} />
+        <DesciptionTest blockContent={singlePost && singlePost.blockContent} />
 
         <div style={{ position: "relative" }}>
-          <div className={classes.description}>
-            {singlePost && singlePost.description}
-          </div>
           <div className={classes.socailIcons}>
             <FacebookIcon className={classes.icon} />
             <InstagramIcon className={classes.icon} />
